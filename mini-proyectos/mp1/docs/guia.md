@@ -30,9 +30,9 @@ El objetivo es:
 
 1. **Definir estructuras de datos**:
 
-   - Estructura para vehículos (ID, posición, velocidad, semáforo asignado).
-   - Estructura para semáforos (ID, estado actual, tiempo en cada estado).
-   - Estructura para intersección (lista de semáforos, lista de vehículos).
+   - Estructura para vehículos
+   - Estructura para semáforos
+   - Estructura para intersección
 
 2. **Inicializar datos**:
 

@@ -4,7 +4,7 @@
 
 El objetivo es simular una **intersección** donde:
 
-- **Vehículos**: se mueven conforme al estado del semáforo que les corresponde. Cada vehículo tiene identificador, posición y velocidad.
+- **Vehículos**: se mueven conforme al estado del semáforo que les corresponde.
 - **Semáforos**: alternan entre estados (verde, amarillo, rojo) con reglas de tiempo predefinidas.
 - **Intersección**: contiene la lista de semáforos y vehículos.
 - **Log**: registra en cada iteración la posición de los vehículos y el estado de los semáforos.
