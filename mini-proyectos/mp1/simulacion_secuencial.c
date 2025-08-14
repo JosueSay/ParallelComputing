@@ -71,7 +71,7 @@ static void setEstadoInicialSemaforo(Semaforo *s, EstadoSemaforo e)
  * Parámetros:
  *   s: puntero al semáforo a actualizar.
  */
-static void actualizarSemaforoTick(Semaforo *s) 0
+static void actualizarSemaforoTick(Semaforo *s)
 {
   if (--(s->tiempoRestante) > 0)
     return;

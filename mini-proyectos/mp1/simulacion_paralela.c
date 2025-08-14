@@ -62,7 +62,6 @@ typedef struct
  * Parámetros:
  *   s: puntero al semáforo a inicializar.
  *   e: estado inicial (RED/GREEN/YELLOW).
- * Retorno: void.
  */
 static void setEstadoInicialSemaforo(Semaforo *s, EstadoSemaforo e)
 {
@@ -77,7 +76,6 @@ static void setEstadoInicialSemaforo(Semaforo *s, EstadoSemaforo e)
  * Avanza un tick el semáforo; si expira su tiempo, cambia al siguiente estado.
  * Parámetros:
  *   s: puntero al semáforo a actualizar.
- * Retorno: void.
  */
 static void actualizarSemaforoTick(Semaforo *s)
 {
@@ -105,8 +103,7 @@ static void actualizarSemaforoTick(Semaforo *s)
  * Mueve un vehículo un paso si el semáforo asociado está en GREEN.
  * Parámetros:
  *   v: puntero al vehículo a mover.
- *   semaforos: arreglo de semáforos (solo lectura).
- * Retorno: void.
+ *   semaforos: arreglo de semáforos.
  */
 static void moverVehiculoTick(Vehiculo *v, const Semaforo *semaforos)
 {
@@ -119,13 +116,10 @@ static void moverVehiculoTick(Vehiculo *v, const Semaforo *semaforos)
 
 /*
  * detectarChoques
- * Detecta choques simples en posiciones NO negativas del mismo carril.
  * Parámetros:
  *   inter: intersección con el estado actual.
  * Retorno:
- *   número de choques detectados (imprime quién chocó).
- *
- * Nota: se ignoran coincidencias en posiciones negativas (cola).
+ *   número de choques detectados.
  */
 static int detectarChoques(const Interseccion *inter)
 {
@@ -153,9 +147,8 @@ static int detectarChoques(const Interseccion *inter)
  * imprimirEstado
  * Imprime el log de la iteración en el formato solicitado.
  * Parámetros:
- *   t: número de iteración (1..ITERACIONES).
+ *   t: número de iteración
  *   inter: estado de la intersección.
- * Retorno: void.
  */
 static void imprimirEstado(int t, const Interseccion *inter)
 {
@@ -208,8 +201,9 @@ static Interseccion crearInterseccion(int nVehiculos, int nSemaforos)
     Vehiculo *v = &inter.vehiculos[i];
     v->id = i;
     v->idSemaforo = i % nSemaforos;
-    int indiceEnCola = i / nSemaforos; // 0,1,2,... por carril
-    v->posicion = -indiceEnCola;       // evita choques al inicio
+    int indiceEnCola = i / nSemaforos;
+    v->posicion = -indiceEnCola;
+    // v->posicion = 0;
   }
 
   return inter;
@@ -220,7 +214,6 @@ static Interseccion crearInterseccion(int nVehiculos, int nSemaforos)
  * Libera la memoria asociada a la intersección.
  * Parámetros:
  *   inter: puntero a la intersección a destruir.
- * Retorno: void.
  */
 static void destruirInterseccion(Interseccion *inter)
 {
@@ -232,10 +225,9 @@ static void destruirInterseccion(Interseccion *inter)
 
 /*
  * sleepMs
- * Pausa la ejecución por ms milisegundos (opcional y portable).
+ * Pausa la ejecución por ms milisegundos
  * Parámetros:
- *   ms: milisegundos a dormir (0 = no hace nada).
- * Retorno: void.
+ *   ms: milisegundos
  */
 static void sleepMs(int ms)
 {
@@ -305,7 +297,7 @@ static int estimateThreadsByLoad(int activos, int maxThreads)
  */
 int main(void)
 {
-  // Ajuste dinámico general (OpenMP decidirá si reduce/aumenta hilos según runtime).
+  // OpenMP decidirá si reduce/aumenta hilos según runtime.
   omp_set_dynamic(1);
 
   Interseccion inter = crearInterseccion(N_VEHICULOS, N_SEMAFOROS);

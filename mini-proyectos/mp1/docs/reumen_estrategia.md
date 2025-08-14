@@ -1,11 +1,7 @@
 
 # Resumen de la estrategia
 
-## Qué problema resolvemos
-
-Simulamos una **intersección**: en cada tick se **actualizan semáforos**, se **mueven vehículos** según su semáforo y se **registra** el estado (log). El costo dominante es recorrer **muchos vehículos** cada iteración.
-
-## Idea central (paralelismo por datos)
+## Idea central
 
 Paralelizamos los **bucles** que procesan colecciones:
 
